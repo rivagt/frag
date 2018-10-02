@@ -6,12 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements  Fragment1.OnFragmentInteractionListener , Fragment2.OnFragmentInteractionListener, Fragment3.OnFragmentInteractionListener, View.OnClickListener {
-
+    private TextView uno,dos,tres,cuatro,cinco;
+    private String nombres, apellidos, direccion, telefono, _id;
     Button b1, b2, b3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Fragment1 f1 = new Fragment1();
@@ -25,6 +28,23 @@ public class MainActivity extends AppCompatActivity implements  Fragment1.OnFrag
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
         b3.setOnClickListener(this);
+       /* uno=(TextView)findViewById(R.id._id);
+        dos=(TextView)findViewById(R.id.nombres);
+        tres=(TextView)findViewById(R.id.apellidos);
+        cuatro=(TextView)findViewById(R.id.direccion);
+        cinco=(TextView)findViewById(R.id.telefono);
+
+        _id=getIntent().getStringExtra("_id");
+        nombres=getIntent().getStringExtra("nombres");
+        apellidos=getIntent().getStringExtra("apellidos");
+        direccion=getIntent().getStringExtra("direccion");
+        telefono=getIntent().getStringExtra("telefono");
+
+        uno.setText("_id"+_id);
+        dos.setText("nombres"+nombres);
+        tres.setText("apellidos"+apellidos);
+        cuatro.setText("direccion"+direccion);
+        cinco.setText("telefono"+telefono);*/
 
     }
 

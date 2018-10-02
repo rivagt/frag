@@ -1,12 +1,24 @@
 package pe.edu.upeu.crud;
 
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import OpenHelper.DataBase;
 
 
 /**
@@ -18,6 +30,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Fragment1 extends Fragment {
+    private ListView lv;
+    private ArrayList<Integer> codigos;
+    private Cursor c;
+    DataBase db = new DataBase(getContext());
+    private ArrayList<String> total=new ArrayList<>();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,7 +49,68 @@ public class Fragment1 extends Fragment {
     public Fragment1() {
         // Required empty public constructor
     }
+    @Override    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.fragment_fragment1,container, false);
 
+        lv=(ListView)view.findViewById(R.id.lv1);
+
+
+        mostrarlista();
+
+
+
+        return view;
+    }
+    public boolean mostrarlista(){
+        ArrayList<String> lista = new ArrayList<String>();
+        codigos=new ArrayList<>();
+        db = new DataBase(getContext());
+        c=db.cursor();
+        if (c.moveToFirst()){
+            do{
+                lista.add(c.getString(0)+ " " + c.getString(1) +" "+c.getString(2)+ " " + c.getString(3)+" "+ c.getString(4));
+                codigos.add(c.getInt(0));
+            }while (c.moveToNext());
+        }else{
+
+                lista.add(c.getString(0)+ " " + c.getString(1) +" "+c.getString(2)+ " " + c.getString(3)+" "+ c.getString(4));
+                codigos.add(c.getInt(0));
+
+        }
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,lista);
+        lv.setAdapter(adap);
+        adap.notifyDataSetChanged();
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int posicion, long id) {
+                int cod = codigos.get(posicion);
+                SQLiteDatabase bd = db.getReadableDatabase();
+                c = bd.rawQuery("Select _id,nombres,apellidos,direccion,telefono from personas", null);
+                if (c.moveToFirst()){
+                    String _id = String.valueOf(c.getInt(0));
+                    String nombres = c.getString(1);
+                    String apellidos = c.getString(2);
+                    String direccion = c.getString(3);
+                    String telefono = c.getString(4);
+
+                    Intent obj = new Intent(getContext(), MainActivity.class);
+
+                    obj.putExtra("nombres",nombres);
+                    obj.putExtra("apellidos", apellidos);
+                    obj.putExtra("direccion", direccion);
+                    obj.putExtra("telefono", telefono);
+                    obj.putExtra("_id", _id);
+
+                    startActivity(obj);
+                }
+                else{
+                    Toast.makeText(getContext(), "NO EXISTE", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        return true;
+    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -60,12 +138,7 @@ public class Fragment1 extends Fragment {
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment1, container, false);
-    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
