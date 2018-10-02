@@ -18,12 +18,12 @@ public class DataBase extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table personas(_id integer primary key autoincrement, nombres text, apellidos text, direccion text, telefono text)");
-        db.execSQL("insert into personas(nombres,apellidos,direccion,telefono) values('Adiel','Preciado','Ñaña','987654321')");
+        db.execSQL("insert into personas(nombres,apellidos,direccion,telefono) values('Julio','Granados','Ñaña','987654321')");
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("insert into personas(nombres,apellidos,direccion,telefono) values('Julio','Granados','Ñaña','987654321')");
     }
   /*  public static class Personas{
         public static final String TABLE = "personas";
