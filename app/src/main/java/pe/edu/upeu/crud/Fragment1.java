@@ -108,52 +108,7 @@ public class Fragment1 extends Fragment {
         });
         return true;
     }
-    public boolean mostrarRegistro(){
-        ArrayList<String> lista = new ArrayList<String>();
-        codigos=new ArrayList<>();
-        db = new DataBase(getContext());
-        c=db.cursor();
-        if (c.moveToFirst()){
-            do{
-                lista.add("ID: "+c.getString(0)+ " Nombres: " + c.getString(1) +" Apellidos: "+c.getString(2)+ " Direccion: " + c.getString(3)+" Telefono: "+ c.getString(4));
-                codigos.add(c.getInt(0));
-            }while (c.moveToNext());
 
-        }
-        ArrayAdapter<String> adap = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,lista);
-        lv.setAdapter(adap);
-        adap.notifyDataSetChanged();
-
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int posicion, long id) {
-                int cod = codigos.get(posicion);
-                SQLiteDatabase bd = db.getReadableDatabase();
-                c = bd.rawQuery("Select _id,nombres,apellidos,direccion,telefono from personas", null);
-                if (c.moveToFirst()){
-                    String _id = String.valueOf(c.getInt(0));
-                    String nombres = c.getString(1);
-                    String apellidos = c.getString(2);
-                    String direccion = c.getString(3);
-                    String telefono = c.getString(4);
-                    Intent obj = new Intent(getContext(), MainActivity.class);
-
-                    obj.putExtra("nombres",nombres);
-                    obj.putExtra("apellidos", apellidos);
-                    obj.putExtra("direccion", direccion);
-                    obj.putExtra("telefono", telefono);
-                    obj.putExtra("_id", _id);
-
-                    startActivity(obj);
-                }
-                else{
-                    Toast.makeText(getContext(), "NO EXISTE", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        return true;
-    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
