@@ -91,7 +91,7 @@ public class Fragment1 extends Fragment {
                     String direccion = c.getString(3);
                     String telefono = c.getString(4);
 
-                    Intent obj = new Intent(getContext(), MainActivity.class);
+                    Intent obj = new Intent(getContext(), Detalle.class);
 
                     obj.putExtra("nombres",nombres);
                     obj.putExtra("apellidos", apellidos);

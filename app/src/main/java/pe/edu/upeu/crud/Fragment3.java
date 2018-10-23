@@ -1,12 +1,23 @@
 package pe.edu.upeu.crud;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import Entidad.Usuario;
+import OpenHelper.DataBase;
+import adapter.ListaAdapter;
 
 
 /**
@@ -22,6 +33,10 @@ public class Fragment3 extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    ArrayList<Usuario> listaUsuario;
+    RecyclerView recyclerViewUsuarios;
+    private Cursor c;
+    DataBase conn;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -63,8 +78,35 @@ public class Fragment3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment3, container, false);
+
+        View view=inflater.inflate(R.layout.fragment_fragment3,container, false);
+        listaUsuario = new ArrayList<>();
+
+        recyclerViewUsuarios=(RecyclerView)view.findViewById(R.id.recyclerPersonas);
+        recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(getContext()));
+        consultarLista();
+        ListaAdapter adap = new ListaAdapter(listaUsuario);
+        recyclerViewUsuarios.setAdapter(adap);
+        return view;
+
+    }
+    public void consultarLista() {
+        Toast.makeText(getContext(), "sadas", Toast.LENGTH_SHORT).show();
+        ArrayList<String> lista = new ArrayList<String>();
+        Usuario usuario = null;
+        conn = new DataBase(getContext());
+        c = conn.cursor();
+        while (c.moveToNext()) {
+            usuario = new Usuario();
+            usuario.setId(c.getInt(0));
+            usuario.setNombre(c.getString(1));
+            usuario.setApellido(c.getString(2));
+            usuario.setDireccion(c.getString(3));
+            usuario.setTelefono(c.getString(4));
+            listaUsuario.add(usuario);
+
+        }
+        Toast.makeText(getContext(),listaUsuario.get(0).getNombre(),Toast.LENGTH_SHORT).show();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
