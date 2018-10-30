@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Detalle" />
-        <activity android:name=".Agregar"></activity>
+        <activity android:name=".Agregar" />
+        <activity android:name=".Operaciones"></activity>
     </application>
 
 </manifest>

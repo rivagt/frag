@@ -9,19 +9,22 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fragmento 2" />
+        android:text="Fragment 2" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerPersonas1"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="100dp"
-        android:padding="40dp"
-        android:paddingBottom="40dp"
-        android:paddingEnd="40dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:paddingStart="40dp"
-        android:paddingTop="40dp" />
+    <Button
+        android:id="@+id/btnagregar"
+        android:layout_width="184dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="30dp"
+        android:text="Agregar" />
+
+    <Button
+        android:id="@+id/btnbuscar"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="80dp"
+        android:text="Consultas" />
 
 </FrameLayout>

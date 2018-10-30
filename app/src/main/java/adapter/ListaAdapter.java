@@ -40,15 +40,13 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.PersonasHold
     }
 
     public class PersonasHolder extends RecyclerView.ViewHolder{
-        TextView documento,nombre,apellido,escuela,ciclo,direccion,telefono;
+        TextView documento,nombre,apellido,direccion,telefono;
 
         public PersonasHolder(View itemView) {
             super(itemView);
             documento = (TextView) itemView.findViewById(R.id.textDocumento);
             nombre = (TextView) itemView.findViewById(R.id.textNombre);
             apellido = (TextView) itemView.findViewById(R.id.textApellido);
-            escuela = (TextView) itemView.findViewById(R.id.textEscuela);
-            ciclo = (TextView) itemView.findViewById(R.id.textCiclo);
             direccion = (TextView) itemView.findViewById(R.id.textDireccion);
             telefono = (TextView) itemView.findViewById(R.id.textTelefono);
         }

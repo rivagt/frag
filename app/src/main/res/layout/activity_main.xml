@@ -14,20 +14,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Fr 1" />
+            android:text="List View" />
 
         <Button
             android:id="@+id/btf2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Fr 2" />
+            android:text="OPERACIONES" />
+
         <Button
             android:id="@+id/btf3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Fr 3" />
+            android:text="CARD VIEW" />
     </LinearLayout>
 
 

@@ -1,12 +1,16 @@
 package pe.edu.upeu.crud;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Path;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
 
 
 /**
@@ -18,6 +22,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Fragment2 extends Fragment {
+    private Button btna, btnc;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,6 +36,7 @@ public class Fragment2 extends Fragment {
 
     public Fragment2() {
         // Required empty public constructor
+
     }
 
     /**
@@ -54,17 +60,38 @@ public class Fragment2 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment2, container, false);
+        View view=inflater.inflate(R.layout.fragment_fragment2,container, false);
+        btna = (Button)view.findViewById(R.id.btnagregar);
+        btnc = (Button)view.findViewById(R.id.btnbuscar);
+        mostrar();
+
+
+
+
+        return view;
+    }
+    public void mostrar(){
+        btna.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(getContext(), Agregar.class);
+                startActivity(a);
+            }
+        });
+        btnc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent c = new Intent(getContext(), Operaciones.class);
+                startActivity(c);
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event

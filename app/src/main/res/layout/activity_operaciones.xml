@@ -12,12 +12,33 @@
         <TextView
             android:layout_width="106dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="140dp"
             android:text="Nuevo Registro" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/idnomb"
+            android:layout_width="265dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Nombre"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/Buscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Buscar"
+            android:onClick="onClick"/>
     </LinearLayout>
 
     <EditText
-        android:id="@+id/inom"
+        android:id="@+id/idnom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -26,7 +47,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/iape"
+        android:id="@+id/idape"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -35,7 +56,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/idir"
+        android:id="@+id/iddir"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -44,7 +65,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/itel"
+        android:id="@+id/idtel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -52,11 +73,28 @@
         android:hint="Telefono"
         android:inputType="textPersonName" />
 
-    <Button
-        android:id="@+id/regis"
+    <EditText
+        android:id="@+id/_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Registrar"
+        android:ems="10"
+        android:hint="Telefono"
+        android:inputType="textPersonName"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/actualizar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Actualizar"
+        android:onClick="onClick"/>
+    <Button
+        android:id="@+id/eliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Eliminar"
         android:onClick="onClick"/>
 </LinearLayout>
